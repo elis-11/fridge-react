@@ -31,7 +31,7 @@ function App() {
 
   // Total Price
   const totalPrice = products.reduce((total, item) => {
-    return total + item.price;
+    return total + item.price * item.count;
   }, 0);
 
   // const productsMemo = useMemo(() => {
