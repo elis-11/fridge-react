@@ -10,6 +10,12 @@ function App() {
   //   setActiveIndex(index);
   // };
 
+  // Total
+  const totalPrice = products.reduce((total, product) => {
+    return total + product.price
+  }, 0)
+
+
   return (
     <div className="collumn items-center">
       <div className="flex  items-center font-bold mx-auto my-3">
@@ -40,7 +46,7 @@ function App() {
 
         {/* <div className="cart flex justify-center bg-slate-400"> */}
         <div className="cart grid content-start bg-slate-400">
-          <div className="total">Total</div>
+          <div className="total">Total: {totalPrice.toFixed(2)}</div>
         </div>
       </div>
     </div>
