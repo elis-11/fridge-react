@@ -1,21 +1,43 @@
 import { Products } from "./components/Products";
-import products from "./assets/products.json";
-console.log(products);
+import productsJson from "./assets/products.json";
+import { useMemo, useState } from "react";
+console.log(productsJson);
 
 function App() {
+  const [products, setProducts] = useState(productsJson);
   // const [activeIndex, setActiveIndex] = useState(0);
   // const categories = ["vegetable", "fruit", "berry", "cheese"];
   // const activeCategory = (index) => {
   //   setActiveIndex(index);
   // };
 
+  const addProduct = (_id) => {
+    const productsUpdate = products.map((product) =>
+      product._id === _id ? { ...product, count: product.count + 1 } : product
+    );
+    setProducts(productsUpdate);
+  };
+  const removeProduct = (_id) => {
+    const productsUpdate = products.map((product) =>
+    product._id === _id ? { ...product, count: product.count - 1 } : product
+  );
+  setProducts(productsUpdate);
+
+  };
+
   // Total Products
-  const totalProducts = products.length
+  const totalProducts = products.length;
 
   // Total Price
   const totalPrice = products.reduce((total, item) => {
     return total + item.price;
   }, 0);
+
+  // const productsMemo = useMemo(() => {
+  //   const sum = products.reduce((total, item) => total + item.price, 0);
+  //   return sum;
+  // }, [products]);
+  // console.log(productsMemo);
 
   // Total Volume
   const totalVolume = products.reduce((total, item) => {
@@ -50,8 +72,14 @@ function App() {
       </div> */}
       <div className="flex flex-row justify-between ">
         <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
-          {products.map((product) => (
-            <Products key={product._id} product={product} />
+          {products.map((product) => ( 
+            // product.count >= 0 && 
+            <Products
+              key={product._id}
+              product={product}
+              addProduct={addProduct}
+              removeProduct={removeProduct}
+            />
           ))}
         </div>
 
@@ -64,13 +92,15 @@ function App() {
             Total volume: {totalVolume} from 100
           </div>
           <div className="expensive flex justify-center mt-6 font-bold">
-          Expensive Product: {expensivePrice.title} costs: {expensivePrice.price}
-        </div>
+            Expensive Product: {expensivePrice.title} costs:{" "}
+            {expensivePrice.price}
+          </div>
           <div className="cheapest flex justify-center mt-6 font-bold">
             Cheapest Product: {cheapestPrice.title} costs: {cheapestPrice.price}
           </div>
           <div className="total flex justify-center mt-6 font-bold">
             Total price: {totalPrice.toFixed(2)}
+            {/* Total price: {productsMemo.toFixed(2)} */}
           </div>
         </div>
       </div>
