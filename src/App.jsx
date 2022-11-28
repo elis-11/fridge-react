@@ -9,12 +9,18 @@ function App() {
   //   setActiveIndex(index);
   // };
 
-  // Total
+  // Total Products
+  const totalProducts = products.length
+
+  // Total Price
   const totalPrice = products.reduce((total, item) => {
     return total + item.price;
   }, 0);
 
-  
+  // Total Volume
+  const totalVolume = products.reduce((total, item) => {
+    return total + item.volume;
+  }, 0);
 
   // Expensive
   const expensivePrice = products.reduce((total, item) => {
@@ -47,18 +53,27 @@ function App() {
       <div className="flex flex-row justify-between ">
         <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
           {products.map((product) => (
-            <Products
-              key={product._id}
-              product={product}
-            />
+            <Products key={product._id} product={product} />
           ))}
         </div>
 
         {/* <div className="cart flex justify-center bg-slate-400"> */}
         <div className="cart basis-1/4 flex flex-col bg-orange-100">
-          <div className="total flex justify-center mt-6 font-bold">Total price: {totalPrice.toFixed(2)}</div>
-          {/* <div className="expensive">{expensivePrice}</div> */}
-          {/* <div className="cheapest">{cheapestPrice}</div>  */}
+          <div className="total flex justify-center mt-6 font-bold">
+            Total Products: {totalProducts}
+          </div>
+          <div className="total flex justify-center mt-6 font-bold">
+            Total volume: {totalVolume} from 100
+          </div>
+          {/* <div className="expensive flex justify-center mt-6 font-bold">
+          Expensive: {expensivePrice}
+        </div> */}
+          {/* <div className="cheapest flex justify-center mt-6 font-bold">
+            Cheapest: {cheapestPrice}
+          </div> */}
+          <div className="total flex justify-center mt-6 font-bold">
+            Total price: {totalPrice.toFixed(2)}
+          </div>
         </div>
       </div>
     </div>
