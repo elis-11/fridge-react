@@ -5,11 +5,11 @@ console.log(productsJson);
 
 function App() {
   const [products, setProducts] = useState(productsJson);
-  // const [activeIndex, setActiveIndex] = useState(0);
-  // const categories = ["vegetable", "fruit", "berry", "cheese"];
-  // const activeCategory = (index) => {
-  //   setActiveIndex(index);
-  // };
+  const [activeIndex, setActiveIndex] = useState(0);
+  const categories = ["vegetable", "fruit", "berry", "cheese"];
+  const activeCategory = (index) => {
+    setActiveIndex(index);
+  };
 
   const addProduct = (_id) => {
     const productsUpdate = products.map((product) =>
@@ -60,17 +60,19 @@ function App() {
       <div className="flex  items-center font-bold mx-auto my-3">
         <h2 className="">Fridge App</h2>
       </div>
-      {/* <div className="categories flex m-5">
+      <div className="categories flex m-5">
         {categories.map((value, index) => (
-          <div 
-          // key={categories.length}
+          <div
+            key={value}
             onClick={() => activeCategory(index)}
-            className={activeIndex === index ? "active" : "" } className="bg-gray-300 text-white p-3 m-3 rounded-2xl opacity-50 cursor-pointer"
+            className={`${
+              activeIndex === index ? "active" : ""
+            } bg-gray-300 text-white p-3 m-3 rounded-2xl opacity-50 cursor-pointer`}
           >
             {value}
           </div>
         ))}
-      </div> */}
+      </div>
       <div className="flex flex-row justify-between ">
         <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
           {products.map((product) => (
