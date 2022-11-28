@@ -19,10 +19,11 @@ function App() {
   };
   const removeProduct = (_id) => {
     const productsUpdate = products.map((product) =>
-    product._id === _id ? { ...product, count: product.count - 1 } : product
-  );
-  setProducts(productsUpdate);
-
+      product._id === _id && product.count
+        ? { ...product, count: product.count - 1 }
+        : product
+    );
+    setProducts(productsUpdate);
   };
 
   // Total Products
@@ -72,8 +73,8 @@ function App() {
       </div> */}
       <div className="flex flex-row justify-between ">
         <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
-          {products.map((product) => ( 
-            // product.count >= 0 && 
+          {products.map((product) => (
+            // product.count >= 0 &&
             <Products
               key={product._id}
               product={product}
