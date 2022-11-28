@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-export const Products = ({ title, price, image, category, status, weight }) => {
+// export const Products = ({ title, price, image, category, status, weight }) => {
+export const Products = ({ product }) => {
   const [count, setCount] = useState(0);
 
   const addProduct = () => {
@@ -12,14 +13,15 @@ export const Products = ({ title, price, image, category, status, weight }) => {
 
   return (
     <div>
-      <div className="w-48 m-2 bg-orange-100 shadow-sm border-2 rounded border-red-100">
-        <img src={image} className="w-full h-24" alt={title} />
+      <div className="w-48 m-2 bg-orange-100 shadow-lg border-2 rounded border-red-100">
+        <img src={product.imageUrl} className="w-full h-24" alt={product.title} />
         <div className="data p-4">
-          <div className="title">{title}</div>
-          <div className="weight">weight: {weight} gr.</div>
-          <div className="category">category: {category}</div>
-          <div className="status">status: {status}</div>
-          <div className="price">price: {price}</div>
+          <div className="title font-bold">{product.title}</div>
+          <div className="weight">weight: {product.weight} gr.</div>
+          <div className="category">category: {product.category}</div>
+          <div className="status">status: {product.status}</div>
+          <div className="volume">volume: {product.volume}</div>
+          <div className="price">price: {product.price}</div>
           <div className="flex justify-center">
             <button
               onClick={addProduct}

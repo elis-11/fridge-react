@@ -14,6 +14,8 @@ function App() {
     return total + item.price;
   }, 0);
 
+  
+
   // Expensive
   const expensivePrice = products.reduce((total, item) => {
     return total.price > item.price ? total : item;
@@ -42,23 +44,21 @@ function App() {
           </div>
         ))}
       </div> */}
-      <div className="flex justify-between ">
-        <div className=" grid grid-cols-4 gap-1 content-start bg-gray-300">
+      <div className="flex flex-row justify-between ">
+        <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
           {products.map((product) => (
             <Products
               key={product._id}
-              title={product.title}
-              price={product.price}
-              image={product.imageUrl}
+              product={product}
             />
           ))}
         </div>
 
         {/* <div className="cart flex justify-center bg-slate-400"> */}
-        <div className="cart grid content-start bg-slate-400">
-          <div className="total">Total: {totalPrice.toFixed(2)}</div>
-          {/* <div className="expensive">{expensivePrice}</div>
-          <div className="cheapest">{cheapestPrice}</div> */}
+        <div className="cart basis-1/4 flex flex-col bg-orange-100">
+          <div className="total flex justify-center mt-6 font-bold">Total price: {totalPrice.toFixed(2)}</div>
+          {/* <div className="expensive">{expensivePrice}</div> */}
+          {/* <div className="cheapest">{cheapestPrice}</div>  */}
         </div>
       </div>
     </div>
