@@ -26,13 +26,11 @@ function App() {
   const expensivePrice = products.reduce((total, item) => {
     return total.price > item.price ? total : item;
   });
-  console.log(expensivePrice);
 
   // Cheapest
   const cheapestPrice = products.reduce((total, item) => {
     return total.price < item.price ? total : item;
   });
-  console.log(cheapestPrice);
 
   return (
     <div className="collumn items-center">
@@ -66,10 +64,10 @@ function App() {
             Total volume: {totalVolume} from 100
           </div>
           <div className="expensive flex justify-center mt-6 font-bold">
-          Expensive Product: {expensivePrice.title}
+          Expensive Product: {expensivePrice.title} costs: {expensivePrice.price}
         </div>
           <div className="cheapest flex justify-center mt-6 font-bold">
-            Cheapest Product: {cheapestPrice.title}
+            Cheapest Product: {cheapestPrice.title} costs: {cheapestPrice.price}
           </div>
           <div className="total flex justify-center mt-6 font-bold">
             Total price: {totalPrice.toFixed(2)}
