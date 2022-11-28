@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
 // export const Products = ({ title, price, image, category, status, weight }) => {
-export const Products = ({ product, addProduct, removeProduct }) => {
-
-  
+export const Products = ({
+  product,
+  addProduct,
+  removeProduct,
+  updateProductPrice,
+}) => {
   return (
     <div>
       <div className="w-48 m-2 bg-orange-100 shadow-lg border-2 rounded border-red-100">
@@ -18,7 +21,13 @@ export const Products = ({ product, addProduct, removeProduct }) => {
           <div className="category">category: {product.category}</div>
           <div className="status">status: {product.status}</div>
           <div className="volume">volume: {product.volume}</div>
-          <div className="price">price: {product.price}</div>
+          <div
+            onClick={() => updateProductPrice(product._id)}
+            className="price"
+          >
+            price: {product.price}
+          </div>
+
           <div className="flex justify-center">
             <button
               onClick={() => addProduct(product._id)}

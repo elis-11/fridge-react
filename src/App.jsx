@@ -26,6 +26,15 @@ function App() {
     setProducts(productsUpdate);
   };
 
+  const updateProductPrice = (_id) => {
+    const productsUpdate = products.map((product) =>
+      product._id === _id
+        ? { ...product, price: Number((product.price + 1).toFixed(2)) }
+        : product
+    );
+    setProducts(productsUpdate);
+  };
+
   // Total Products
   const totalProducts = products.length;
 
@@ -82,6 +91,7 @@ function App() {
               product={product}
               addProduct={addProduct}
               removeProduct={removeProduct}
+              updateProductPrice={updateProductPrice}
             />
           ))}
         </div>
