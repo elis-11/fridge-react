@@ -65,12 +65,12 @@ function App() {
           <div className="total flex justify-center mt-6 font-bold">
             Total volume: {totalVolume} from 100
           </div>
-          {/* <div className="expensive flex justify-center mt-6 font-bold">
-          Expensive: {expensivePrice}
-        </div> */}
-          {/* <div className="cheapest flex justify-center mt-6 font-bold">
-            Cheapest: {cheapestPrice}
-          </div> */}
+          <div className="expensive flex justify-center mt-6 font-bold">
+          Expensive Product: {expensivePrice.title}
+        </div>
+          <div className="cheapest flex justify-center mt-6 font-bold">
+            Cheapest Product: {cheapestPrice.title}
+          </div>
           <div className="total flex justify-center mt-6 font-bold">
             Total price: {totalPrice.toFixed(2)}
           </div>
