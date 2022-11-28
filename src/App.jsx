@@ -1,6 +1,5 @@
 import { Products } from "./components/Products";
 import products from "./assets/products.json";
-import { useState } from "react";
 console.log(products);
 
 function App() {
@@ -11,10 +10,21 @@ function App() {
   // };
 
   // Total
-  const totalPrice = products.reduce((total, product) => {
-    return total + product.price
-  }, 0)
+  const totalPrice = products.reduce((total, item) => {
+    return total + item.price;
+  }, 0);
 
+  // Expensive
+  const expensivePrice = products.reduce((total, item) => {
+    return total.price > item.price ? total : item;
+  });
+  console.log(expensivePrice);
+
+  // Cheapest
+  const cheapestPrice = products.reduce((total, item) => {
+    return total.price < item.price ? total : item;
+  });
+  console.log(cheapestPrice);
 
   return (
     <div className="collumn items-center">
@@ -47,6 +57,8 @@ function App() {
         {/* <div className="cart flex justify-center bg-slate-400"> */}
         <div className="cart grid content-start bg-slate-400">
           <div className="total">Total: {totalPrice.toFixed(2)}</div>
+          {/* <div className="expensive">{expensivePrice}</div>
+          <div className="cheapest">{cheapestPrice}</div> */}
         </div>
       </div>
     </div>
