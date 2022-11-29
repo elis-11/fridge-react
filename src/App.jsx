@@ -63,13 +63,22 @@ function App() {
   }, 0);
 
   // Products in Fridge
-  // const productsInFridge = products.filter((product) => product.count > 0 ? product.name : product
-  //   );
+  // products.reduce((total, item) => {
+  //   item.name = item.count + 1 ? total + 1 : total , 0 })
+  //   total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
+  //   return total;
+  // }, {});
+  // products.filter((product) => product.count > 0 ? product.name : product);
 
   // Fridge Volume
   const fridgeVolume = products.reduce((total, item) => {
     return total + item.volume * item.count;
   }, 0);
+
+  const productsInFridge = products.reduce(
+    (total, product) => total + product.count,
+    0
+  );
 
   return (
     <div className="collumn items-center">
@@ -90,7 +99,7 @@ function App() {
         ))}
       </div>
       <div className="flex flex-row justify-between ">
-        <div className=" basis-3/4 grid grid-cols-4 gap-1 content-start bg-orange-50">
+        <div className=" basis-3/5 grid grid-cols-4 gap-1 content-start bg-orange-50">
           {products.map((product) => (
             <Products
               key={product._id}
@@ -102,7 +111,7 @@ function App() {
           ))}
         </div>
 
-        <div className="cart basis-1/4 flex flex-col bg-orange-100">
+        <div className="cart basis-2/5 flex flex-col bg-orange-100">
           {/* Total Products */}
           <div className="tota-products border-4 border-rose-50 p-5">
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
@@ -126,8 +135,7 @@ function App() {
           {/* Products in Fridge */}
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Products in fridge : 
-              {/* {productsInFridge} */}
+              Products in fridge: {productsInFridge}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgePrice.toFixed(2)}
