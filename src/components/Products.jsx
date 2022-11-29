@@ -23,7 +23,7 @@ export const Products = ({
           <div className="volume">volume: {product.volume}</div>
           <div
             onClick={() => updateProductPrice(product._id)}
-            className="price"
+            className="price cursor-pointer"
           >
             price: {product.price}
           </div>
