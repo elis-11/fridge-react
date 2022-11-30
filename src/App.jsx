@@ -11,15 +11,15 @@ function App() {
     setActiveIndex(index);
   };
 
-  const addProduct = (_id) => {
+  const addProduct = (id) => {
     const productsUpdate = products.map((product) =>
-      product._id === _id ? { ...product, count: product.count + 1 } : product
+      product._id === id ? { ...product, count: product.count + 1 } : product
     );
     setProducts(productsUpdate);
   };
-  const removeProduct = (_id) => {
+  const removeProduct = (id) => {
     const productsUpdate = products.map((product) =>
-      product._id === _id && product.count
+      product._id === id && product.count
         ? { ...product, count: product.count - 1 }
         : product
     );
@@ -37,7 +37,13 @@ function App() {
 
   // Total Products
   const totalProducts = products.length;
-  // const productsInFridge =
+
+  // All Products
+  const countProducts = products.reduce((total, item) => {
+    total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
+    return total;
+  }, {});
+  console.log("countProducts:", countProducts);
 
   // Total Price
   const totalPrice = products.reduce((total, item) => total + item.price, 0);
@@ -79,6 +85,11 @@ function App() {
     (total, product) => total + product.count,
     0
   );
+  const productsNamesInFridge = products.reduce(
+    (total, product) => total + product.name,
+    {}
+  );
+  console.log(typeof productsNamesInFridge);
 
   return (
     <div className="collumn items-center">
@@ -117,6 +128,10 @@ function App() {
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
               Total Products: {totalProducts}
             </div>
+            <div className="total flex justify-center mt-6 text-orange-500 font-bold">
+              All Products:
+              {/* {countProducts} */}
+            </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
             </div>
@@ -136,6 +151,10 @@ function App() {
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
               Products in fridge: {productsInFridge}
+            </div>
+            <div className="flex justify-center mt-2 text-orange-500 font-bold ">
+              Products in fridge:
+              {/* {productsNamesInFridge} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgePrice.toFixed(2)}
