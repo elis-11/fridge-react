@@ -64,11 +64,20 @@ function App() {
   });
 
   //! Fridge Price
-  const fridgePrice = products.reduce((total, item) => {
+
+  const countProductsInFridge = products.reduce(
+    (total, product) => total + product.count,
+    0
+  );
+  const fridgeTotalPrice = products.reduce((total, item) => {
     return total + item.price * item.count;
   }, 0);
 
-  // Products in Fridge
+  // Fridge Volume
+  const fridgeTotalVolume = products.reduce((total, item) => {
+    return total + item.volume * item.count;
+  }, 0);
+   // Products in Fridge
   // products.reduce((total, item) => {
   //   item.name = item.count + 1 ? total + 1 : total , 0 })
   //   total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
@@ -76,20 +85,6 @@ function App() {
   // }, {});
   // products.filter((product) => product.count > 0 ? product.name : product);
 
-  // Fridge Volume
-  const fridgeVolume = products.reduce((total, item) => {
-    return total + item.volume * item.count;
-  }, 0);
-
-  const productsInFridge = products.reduce(
-    (total, product) => total + product.count,
-    0
-  );
-  const productsNamesInFridge = products.reduce(
-    (total, product) => total + product.name,
-    {}
-  );
-  console.log(typeof productsNamesInFridge);
 
   return (
     <div className="collumn items-center">
@@ -129,19 +124,27 @@ function App() {
               Total Products: {totalProducts}
             </div>
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
-              All Products:
+              All Products: 
               {/* {countProducts} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
             </div>
             <div className="expensive flex justify-center mt-6 font-bold">
-              Expensive Product: {expensivePrice.title} costs:{" "}
-              {expensivePrice.price}
+              Expensive: {expensivePrice.title} costs: {expensivePrice.price} {""}
+              <img
+                src={expensivePrice.imageUrl}
+                className="w-8 h-8"
+                alt={expensivePrice.title}
+              />
             </div>
             <div className="cheapest flex justify-center mt-6 font-bold">
-              Cheapest Product: {cheapestPrice.title} costs:{" "}
-              {cheapestPrice.price}
+              Cheapest: {cheapestPrice.title} costs: {cheapestPrice.price} {""}
+              <img
+                src={cheapestPrice.imageUrl}
+                className="w-8 h-8"
+                alt={cheapestPrice.title}
+              />
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {totalPrice.toFixed(2)}
@@ -150,17 +153,17 @@ function App() {
           {/* Products in Fridge */}
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Products in fridge: {productsInFridge}
+              Products in fridge: 
+              {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
               Products in fridge:
-              {/* {productsNamesInFridge} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
-              Total price: {fridgePrice.toFixed(2)}
+              Total price: {fridgeTotalPrice.toFixed(2)}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
-              Fridge volume: {fridgeVolume.toFixed(0)} from 100
+              Fridge volume: {fridgeTotalVolume.toFixed(0)} from 100
             </div>
           </div>
         </div>
