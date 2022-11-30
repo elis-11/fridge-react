@@ -93,7 +93,7 @@ function App() {
   return (
     <div className="collumn items-center">
       <div className="flex  items-center justify-center font-bold text-4xl text-orange-300 mx-auto my-3">
-        <h2 className="">Fridge App</h2>
+        <h2 className="">Smart Fridge</h2>
       </div>
       <div className="categories flex m-5">
         {categories.map((value, index) => (
