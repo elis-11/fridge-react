@@ -37,23 +37,23 @@ function App() {
 
   // Total Products
   const totalProducts = products.length;
-    // Fridge Price
+  // Fridge Price
 
-    const countProducts = products.reduce(
-      (total, product) => total + product.count,
-      0
-    );  
+  const countProducts = products.reduce(
+    (total, product) => total + product.count,
+    0
+  );
 
   //! Display Products
-  const displayProducts = products.reduce((total, item) => {
-    total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
+  const displayProducts = products.reduce((total, product) => {
+    total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
     return total;
   }, {});
   console.log("displayProducts:", displayProducts);
-  
+
   const productsJsx = [];
   for (let key in displayProducts) {
-    productsJsx.push(` ${key}:   ${displayProducts[key]} ${', '}`);
+    productsJsx.push(` ${key}:   ${displayProducts[key]} ${", "}`);
   }
 
   // Total Volume
@@ -100,11 +100,12 @@ function App() {
     0
   );
   //! Display Products in Fridge
-  const displayProductsInFridge = products.reduce((total, item) => {
-    total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
+  const displayProductsInFridge = products.reduce((total, product) => {
+    total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
     return total;
   }, {});
   console.log("displayProductsInFridge:", displayProductsInFridge);
+
   const productsJsxInFridge = [];
   for (let key in displayProductsInFridge) {
     productsJsxInFridge.push(
@@ -147,15 +148,13 @@ function App() {
         </div>
 
         <div className="cart basis-2/5 flex flex-col bg-orange-100">
-          {/* Total Products */}
+          {/* All Products */}
           <div className="tota-products border-4 border-rose-50 p-5">
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
               Total Products: {totalProducts}
             </div>
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
-              All Products:
-              {/* {countProductsInFridge} */}
-        {" "}{productsJsx}
+              All Products: {productsJsx}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
