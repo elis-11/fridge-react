@@ -44,20 +44,16 @@ function App() {
       0
     );  
 
-  //! All Products
+  //! Display Products
   const displayProducts = products.reduce((total, item) => {
     total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
     return total;
   }, {});
   console.log("displayProducts:", displayProducts);
+  
   const productsJsx = [];
   for (let key in displayProducts) {
-    productsJsx.push(
-      <div>
-        {" "}
-        {key}: {displayProducts[key]}
-      </div>
-    );
+    productsJsx.push(` ${key}:   ${displayProducts[key]} ${', '}`);
   }
 
   // Total Volume
@@ -159,7 +155,7 @@ function App() {
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
               All Products:
               {/* {countProductsInFridge} */}
-              {/* {productsJsx} */}
+        {" "}{productsJsx}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
