@@ -63,12 +63,17 @@ function App() {
     0
   );
 
-  // All Products in Fridge
+  //! All Products
   const countProducts = products.reduce((total, item) => {
     total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
     return total;
-  },{});
+  },[]);
   console.log("countProducts:", countProducts);
+ const productsJsx = []
+ for(let key in countProducts) {
+   productsJsx.push(<div> {key}: {countProducts[key]}</div>)
+ }
+
 
   const fridgeTotalPrice = products.reduce((total, item) => {
     return total + item.price * item.count;
@@ -82,13 +87,19 @@ function App() {
   const freeVolume = products.reduce((total, item) => {
     return total - item.volume * item.count;
   }, 100);
-  // Products in Fridge
-  // products.reduce((total, item) => {
+
+  //! Products in Fridge
+//   const productsJsx = []
+//   for(let key in products) {
+//     productsJsx.push(<div> {key}: {products[key]}</div>)
+//   }
+//  const prodInFr = productsJsx.reduce((total, item) => {
+//    total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
+//    return total;
+//   }, {});
   //   item.name = item.count + 1 ? total + 1 : total , 0 })
-  //   total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
-  //   return total;
-  // }, {});
   // products.filter((product) => product.count > 0 ? product.name : product);
+
 
   return (
     <div className="collumn items-center">
@@ -159,7 +170,11 @@ function App() {
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
               Products in fridge:
-              {countProductsInFridge}
+              {countProducts}
+              {/* {prodInFr} */}
+            </div>
+            <div className="flex justify-center mt-2 text-orange-500 font-bold ">
+              Products in fridge:
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgeTotalPrice.toFixed(2)}
