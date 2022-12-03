@@ -37,9 +37,28 @@ function App() {
 
   // Total Products
   const totalProducts = products.length;
+    // Fridge Price
 
-  // Total Price
-  const totalPrice = products.reduce((total, item) => total + item.price, 0);
+    const countProducts = products.reduce(
+      (total, product) => total + product.count,
+      0
+    );  
+
+  //! All Products
+  const displayProducts = products.reduce((total, item) => {
+    total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
+    return total;
+  }, {});
+  console.log("displayProducts:", displayProducts);
+  const productsJsx = [];
+  for (let key in displayProducts) {
+    productsJsx.push(
+      <div>
+        {" "}
+        {key}: {displayProducts[key]}
+      </div>
+    );
+  }
 
   // Total Volume
   const totalVolume = products.reduce((total, item) => {
@@ -56,19 +75,8 @@ function App() {
     return total.price < item.price ? total : item;
   });
 
-  //! Fridge Price
-
-  const countProductsInFridge = products.reduce(
-    (total, product) => total + product.count,
-    0
-  );
-
-  // All Products in Fridge
-  const countProducts = products.reduce((total, item) => {
-    total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
-    return total;
-  },{});
-  console.log("countProducts:", countProducts);
+  // Total Price
+  const totalPrice = products.reduce((total, item) => total + item.price, 0);
 
   const fridgeTotalPrice = products.reduce((total, item) => {
     return total + item.price * item.count;
@@ -89,6 +97,27 @@ function App() {
   //   return total;
   // }, {});
   // products.filter((product) => product.count > 0 ? product.name : product);
+
+  // All Products in Fridge
+  const countProductsInFridge = products.reduce(
+    (total, product) => total + product.count,
+    0
+  );
+  //! Display Products in Fridge
+  const displayProductsInFridge = products.reduce((total, item) => {
+    total[item.title] = total[item.title] ? total[item.title] + 1 : 1;
+    return total;
+  }, {});
+  console.log("displayProductsInFridge:", displayProductsInFridge);
+  const productsJsxInFridge = [];
+  for (let key in displayProductsInFridge) {
+    productsJsxInFridge.push(
+      <div>
+        {" "}
+        {key}: {displayProductsInFridge[key]}
+      </div>
+    );
+  }
 
   return (
     <div className="collumn items-center">
@@ -129,7 +158,8 @@ function App() {
             </div>
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
               All Products:
-              {/* {countProducts} */}
+              {/* {countProductsInFridge} */}
+              {/* {productsJsx} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
@@ -158,8 +188,12 @@ function App() {
           {/* Products in Fridge */}
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Products in fridge:
+              Total products in fridge:
               {countProductsInFridge}
+            </div>
+            <div className="flex justify-center mt-2 text-orange-500 font-bold ">
+              Display products in fridge:
+              {/* {productsJsxInFridge} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgeTotalPrice.toFixed(2)}
