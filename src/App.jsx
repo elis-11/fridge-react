@@ -37,12 +37,6 @@ function App() {
 
   // Total Products
   const totalProducts = products.length;
-  // Fridge Price
-
-  const countProducts = products.reduce(
-    (total, product) => total + product.count,
-    0
-  );
 
   //! Display Products
   const displayProducts = products.reduce((total, product) => {
@@ -50,7 +44,6 @@ function App() {
     return total;
   }, {});
   console.log("displayProducts:", displayProducts);
-
   const productsJsx = [];
   for (let key in displayProducts) {
     productsJsx.push(` ${key}:   ${displayProducts[key]} ${", "}`);
@@ -71,6 +64,7 @@ function App() {
     return total.price < item.price ? total : item;
   });
 
+  //! Products in Fridge
   // Total Price
   const totalPrice = products.reduce((total, item) => total + item.price, 0);
 
@@ -86,20 +80,18 @@ function App() {
   const freeVolume = products.reduce((total, item) => {
     return total - item.volume * item.count;
   }, 100);
-  // Products in Fridge
-  // products.reduce((total, item) => {
-  //   item.name = item.count + 1 ? total + 1 : total , 0 })
-  //   total[item.name] = total[item.name] ? total[item.name] + 1 : 1;
-  //   return total;
-  // }, {});
   // products.filter((product) => product.count > 0 ? product.name : product);
 
-  // All Products in Fridge
+  // Total Products in Fridge
   const countProductsInFridge = products.reduce(
     (total, product) => total + product.count,
     0
   );
+  console.log('countProductsInFridge', countProductsInFridge)
   //! Display Products in Fridge
+  // countProductsInFridge.filter(product => product.count > 0)
+  // .reduce((total, product) => total[product.count] = total[product.count] ? total[product.count] + 1 : 1, {})
+  
   const displayProductsInFridge = products.reduce((total, product) => {
     total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
     return total;
@@ -183,8 +175,7 @@ function App() {
           {/* Products in Fridge */}
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Total products in fridge:
-              {countProductsInFridge}
+              Total products in fridge: {' '} {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
               Display products in fridge:
