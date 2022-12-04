@@ -92,21 +92,19 @@ function App() {
   // countProductsInFridge.filter(product => product.count > 0)
   // .reduce((total, product) => total[product.count] = total[product.count] ? total[product.count] + 1 : 1, {})
 
-  const displayProductsInFridge = products.reduce((total, product) => {
-    total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
+  const displayProductsInFridge = products
+  .filter(product => product.count > 0)
+  .reduce((total, product) => {
+    total[product.title] = total[product.title] ? total[product.title] * product.length : 1;
     return total;
   }, {});
   console.log("displayProductsInFridge:", displayProductsInFridge);
 
   const productsJsxInFridge = [];
   for (let key in displayProductsInFridge) {
-    productsJsxInFridge.push(
-      <div>
-        {" "}
-        {key}: {displayProductsInFridge[key]}
-      </div>
-    );
+    productsJsxInFridge.push(` ${key}: ${""} ${displayProductsInFridge[key]} ${","}`);
   }
+  console.log("productsJsxInFridge: ", productsJsxInFridge);
 
   return (
     <div className="collumn items-center">
@@ -149,6 +147,7 @@ function App() {
               All Products:
               {products.map((product) => (
                 <img
+                  key={product._id}
                   src={product.imageUrl}
                   className="w-8 h-8 m-1"
                   alt={product.title}
@@ -186,8 +185,9 @@ function App() {
               Total products in fridge: {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Display products in fridge:
-              {/* {productsJsxInFridge} */}
+              Products in fridge:
+              {' '}
+              {productsJsxInFridge}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgeTotalPrice.toFixed(2)}
