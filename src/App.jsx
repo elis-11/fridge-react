@@ -39,15 +39,15 @@ function App() {
   const totalProducts = products.length;
 
   //! Display Products
-  const displayProducts = products.reduce((total, product) => {
-    total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
-    return total;
-  }, {});
-  console.log("displayProducts:", displayProducts);
-  const productsJsx = [];
-  for (let key in displayProducts) {
-    productsJsx.push(` ${key}:   ${displayProducts[key]} ${", "}`);
-  }
+  // const displayProducts = products.reduce((total, product) => {
+  //   total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
+  //   return total;
+  // }, {});
+  // console.log("displayProducts:", displayProducts);
+  // const productsJsx = [];
+  // for (let key in displayProducts) {
+  //   productsJsx.push(` ${key}:   ${displayProducts[key]} ${", "}`);
+  // }
 
   // Total Volume
   const totalVolume = products.reduce((total, item) => {
@@ -87,11 +87,11 @@ function App() {
     (total, product) => total + product.count,
     0
   );
-  console.log('countProductsInFridge', countProductsInFridge)
+  console.log("countProductsInFridge", countProductsInFridge);
   //! Display Products in Fridge
   // countProductsInFridge.filter(product => product.count > 0)
   // .reduce((total, product) => total[product.count] = total[product.count] ? total[product.count] + 1 : 1, {})
-  
+
   const displayProductsInFridge = products.reduce((total, product) => {
     total[product.title] = total[product.title] ? total[product.title] + 1 : 1;
     return total;
@@ -146,7 +146,15 @@ function App() {
               Total Products: {totalProducts}
             </div>
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
-              All Products: {productsJsx}
+              All Products:
+              {products.map((product) => (
+                <img
+                  src={product.imageUrl}
+                  className="w-8 h-8 m-1"
+                  alt={product.title}
+                />
+              ))}
+              {/* {productsJsx} */}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
@@ -175,7 +183,7 @@ function App() {
           {/* Products in Fridge */}
           <div className="products-in-fridge border-4 border-rose-50 p-5 mt-5">
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Total products in fridge: {' '} {countProductsInFridge}
+              Total products in fridge: {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
               Display products in fridge:
