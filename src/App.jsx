@@ -112,7 +112,7 @@ function App() {
         <h2 className="">Smart Fridge</h2>
       </div>
       <div className="categories flex m-5">
-        {categories.map((value, index) => (
+        {categories.map((value, index) => ( 
           <div
             key={value}
             onClick={() => activeCategory(index)}

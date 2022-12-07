@@ -21,6 +21,15 @@ export const Products = ({
           <div className="category">category: {product.category}</div>
           <div className="status">status: {product.status}</div>
           <div className="volume">volume: {product.volume}</div>
+          <div className="sizes flex">
+            <span>
+              {product.sizes.map((size) => (
+                <span key={size} className="mr-1 bg-orange-50">
+                  {size} sm.
+                </span>
+              ))}
+            </span>
+          </div>
           <div
             onClick={() => updateProductPrice(product._id)}
             className="price cursor-pointer"
