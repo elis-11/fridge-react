@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Select = () => {
+export const Sort = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const list = ["popular", "price", "alphabet"];

@@ -1,7 +1,7 @@
 import { Products } from "./components/Products";
 import productsJson from "./assets/products.json";
 import { useState } from "react";
-import { Select } from "./components/Select";
+import { Sort } from "./components/Sort";
 import { Category } from "./components/Category";
 console.log(productsJson);
 
@@ -114,7 +114,7 @@ function App() {
       </div>
       <div className="header flex justify-between h-50">
         <Category />
-        <Select />
+        <Sort />
       </div>
       <div className="flex flex-row justify-between ">
         <div className=" basis-1/2 grid grid-cols-4 gap-1 content-start bg-orange-50">
