@@ -6,6 +6,7 @@ export const Header = ({ products }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const list = ["popular", "price", "alphabet"];
+  const sortItem = list[selected]
 
   const onClickListItem = (i) => {
     setSelected(i)       // select one item
@@ -38,7 +39,8 @@ export const Header = ({ products }) => {
             onClick={() => setIsVisible(!isVisible)}
             className="ml-2 border-dotted border-orange-500 border-b-4 text-orange-500 cursor-pointer"
           >
-            {list[selected]}
+            {/* {list[selected]} */}
+            {sortItem}
           </span>
         </div>
         {isVisible && (
