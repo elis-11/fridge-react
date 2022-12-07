@@ -1,7 +1,8 @@
 import { Products } from "./components/Products";
 import productsJson from "./assets/products.json";
 import { useState } from "react";
-import { Header } from "./components/Header";
+import { Select } from "./components/Select";
+import { Category } from "./components/Category";
 console.log(productsJson);
 
 function App() {
@@ -108,12 +109,15 @@ function App() {
 
   return (
     <div className="collumn items-center">
-      <div className="flex  items-center justify-center font-bold text-4xl text-orange-300 mx-auto my-3">
+      <div className="flex  items-center justify-center font-bold text-4xl text-orange-300 mx-auto my-2">
         <h2 className="">Smart Fridge</h2>
       </div>
-      <Header products={products}/>
+      <div className="header flex justify-between h-50">
+        <Category />
+        <Select />
+      </div>
       <div className="flex flex-row justify-between ">
-        <div className=" basis-3/5 grid grid-cols-4 gap-1 content-start bg-orange-50">
+        <div className=" basis-1/2 grid grid-cols-4 gap-1 content-start bg-orange-50">
           {products.map((product) => (
             <Products
               key={product._id}
@@ -126,23 +130,24 @@ function App() {
           ))}
         </div>
 
-        <div className="cart basis-2/5 flex flex-col bg-orange-100">
+        <div className="cart basis-1/2 flex flex-col bg-orange-100">
           {/* All Products */}
           <div className="tota-products border-4 border-rose-50 p-5">
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
               Total Products: {totalProducts}
             </div>
             <div className="total flex justify-center mt-6 text-orange-500 font-bold">
-              All Products:
-              {products.map((product) => (
-                <img
-                  key={product._id}
-                  src={product.imageUrl}
-                  className="w-8 h-8 m-1"
-                  alt={product.title}
-                />
-              ))}
-              {/* {productsJsx} */}
+              <div>All Products:</div>
+              <div className="flex flex-wrap">
+                {products.map((product) => (
+                  <img
+                    key={product._id}
+                    src={product.imageUrl}
+                    className="w-8 h-8 m-1"
+                    alt={product.title}
+                  />
+                ))}
+              </div>
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total volume: {totalVolume} from 100
