@@ -93,16 +93,20 @@ function App() {
   // .reduce((total, product) => total[product.count] = total[product.count] ? total[product.count] + 1 : 1, {})
 
   const displayProductsInFridge = products
-  .filter(product => product.count > 0)
-  .reduce((total, product) => {
-    total[product.title] = total[product.title] ? total[product.title] * product.length : 1;
-    return total;
-  }, {});
+    .filter((product) => product.count > 0)
+    .reduce((total, product) => {
+      total[product.title] = total[product.title]
+        ? total[product.title] * product.length
+        : 1;
+      return total;
+    }, {});
   console.log("displayProductsInFridge:", displayProductsInFridge);
 
   const productsJsxInFridge = [];
   for (let key in displayProductsInFridge) {
-    productsJsxInFridge.push(` ${key}: ${""} ${displayProductsInFridge[key]} ${","}`);
+    productsJsxInFridge.push(
+      ` ${key}: ${""} ${displayProductsInFridge[key]} ${","}`
+    );
   }
   console.log("productsJsxInFridge: ", productsJsxInFridge);
 
@@ -112,7 +116,7 @@ function App() {
         <h2 className="">Smart Fridge</h2>
       </div>
       <div className="categories flex m-5">
-        {categories.map((value, index) => ( 
+        {categories.map((value, index) => (
           <div
             key={value}
             onClick={() => activeCategory(index)}
@@ -185,9 +189,7 @@ function App() {
               Total products in fridge: {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Products in fridge:
-              {' '}
-              {productsJsxInFridge}
+              Products in fridge: {productsJsxInFridge}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgeTotalPrice.toFixed(2)}

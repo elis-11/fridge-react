@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // export const Products = ({ title, price, image, category, status, weight }) => {
 export const Products = ({
@@ -7,7 +7,9 @@ export const Products = ({
   removeProduct,
   updateProductPrice,
 }) => {
-  const statusNames = ["inbox", "outbox"];
+  const [activeStatus, setActiveStatus] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+  const statusNames = ["packed", "apiece"];
 
   return (
     <div>
@@ -24,24 +26,34 @@ export const Products = ({
           <div className="volume">volume: {product.volume}</div>
           <div
             onClick={() => updateProductPrice(product._id)}
-            className="price cursor-pointer"
+            className="price cursor-pointer hover:bg-orange-300"
           >
             price: {product.price}
           </div>
 
-          <div className="status">
-            <span className="flex justify-between">
-              {product.status.map((statId) => (
-                <span key={statId} className="px-3 mb-1 bg-orange-50">
-                  {statusNames[statId]}
-                </span>
-              ))}
-            </span>
+          <div className="status flex justify-between">
+            {product.status.map((statId) => (
+              <span
+                onClick={() => setActiveStatus(statId)}
+                key={statId}
+                className={`${
+                  activeStatus === statId ? "active:" : ""
+                } px-3 mb-1 active:bg-violet-100 focus:ring-gray-300 hover:bg-orange-300 cursor-pointer`}
+              >
+                {statusNames[statId]}
+              </span>
+            ))}
           </div>
           <div className="sizes flex">
             <span className="flex justify-between">
-              {product.sizes.map((size) => (
-                <span key={size} className="mr-1 bg-orange-50">
+              {product.sizes.map((size, i) => (
+                <span
+                  onClick={() => setActiveSize(i)}
+                  key={size}
+                  className={`${
+                    activeSize === i ? "active:" : ""
+                  } mr-1 hover:bg-orange-300 active:bg-violet-100 cursor-pointer`}
+                >
                   {size} sm.
                 </span>
               ))}
