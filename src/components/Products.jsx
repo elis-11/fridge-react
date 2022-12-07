@@ -30,8 +30,7 @@ export const Products = ({
           >
             price: {product.price}
           </div>
-
-          <div className="status flex justify-between">
+          <div className="status flex justify-between ">
             {product.status.map((statId) => (
               <span
                 onClick={() => setActiveStatus(statId)}
