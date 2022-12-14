@@ -6,8 +6,8 @@ export const Sort = () => {
   const list = ["popular", "price", "alphabet"];
   const sortItem = list[selected];
 
-  const onClickListItem = (i) => {
-    setSelected(i); // select one item
+  const onClickListItem = (index) => {
+    setSelected(index); // select one item
     setIsVisible(false); // & hide popup
   };
 
@@ -27,7 +27,7 @@ export const Sort = () => {
         <div className="sort_popup mt-3  ">
           {list.map((item, index) => (
             <div
-              key={index}
+              key={item}
               onClick={() => onClickListItem(index)}
               className={`${
                 selected === index ? "active:" : ""

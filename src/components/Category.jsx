@@ -13,7 +13,7 @@ export const Category = () => {
       <div className="categories flex ">
         {categories.map((value, index) => (
           <div
-            key={index}
+            key={value}
             onClick={() => activeCategory(index)}
             className={`${
               activeIndex === index ? "active" : ""
