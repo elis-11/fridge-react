@@ -6,6 +6,7 @@ import { Category } from "./components/Category";
 console.log(productsJson);
 
 function App() {
+  // fetch('https://639102970bf398c73a98b8ea.mockapi.io/items')
   const [products, setProducts] = useState(productsJson);
 
   const addProduct = (id) => {

@@ -45,12 +45,12 @@ export const Products = ({
           </div>
           <div className="sizes flex">
             <span className="flex justify-between">
-              {product.sizes.map((size, i) => (
+              {product.sizes.map((size, index) => (
                 <span
                   onClick={() => setActiveSize(i)}
                   key={size}
                   className={`${
-                    activeSize === i ? "active:" : ""
+                    activeSize === index ? "active:" : ""
                   } mr-1 hover:bg-orange-300 active:bg-violet-100 cursor-pointer`}
                 >
                   {size} sm.
