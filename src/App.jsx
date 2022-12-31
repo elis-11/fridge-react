@@ -103,7 +103,8 @@ function App() {
   const productsJsxInFridge = [];
   for (let key in displayProductsInFridge) {
     productsJsxInFridge.push(
-      ` ${key}: ${""} ${displayProductsInFridge[key]} ${","}`
+      // ` ${key}: ${""} ${displayProductsInFridge[key]} `
+      ` ${key} `
     );
   }
   console.log("productsJsxInFridge: ", productsJsxInFridge);
@@ -180,7 +181,7 @@ function App() {
               Total products in fridge: {countProductsInFridge}
             </div>
             <div className="flex justify-center mt-2 text-orange-500 font-bold ">
-              Products in fridge: {productsJsxInFridge}
+              Products in fridge: {productsJsxInFridge.join(",")}
             </div>
             <div className="total flex justify-center mt-6 font-bold">
               Total price: {fridgeTotalPrice.toFixed(2)}
